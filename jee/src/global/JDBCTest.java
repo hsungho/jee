@@ -37,11 +37,9 @@ public class JDBCTest {
 				result = "id : "+rs.getString("ID")+" pw : "+rs.getString("pw");
 				list.add(result);
 			}
-		} catch (ClassNotFoundException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		} 
 		System.out.println(list);
 	}
 }

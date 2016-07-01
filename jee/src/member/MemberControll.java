@@ -15,24 +15,24 @@ import jdk.nashorn.internal.ir.Optimistic;
  */
 public class MemberControll {
 	public static void main(String[] args) { // String[] params
-		StudentServiceImpl student = new StudentServiceImpl();
+		MemberServiceImpl student = MemberServiceImpl.getInstance();
 		while (true) {
 			switch (JOptionPane.showInputDialog(null, "1 등록 2보기 3수정 4삭제 0종료")) {
 			case "1":
 				String open = JOptionPane.showInputDialog("이름,ID,PW,주민번호[800101-1]");
 				String open1[] = open.split(",");
-				student.openStudente(open1[0], open1[1], open1[2], open1[3]);
+				student.open(open1[0], open1[1], open1[2], open1[3]);
 				break;
 			case "2":
-				JOptionPane.showMessageDialog(null, student.showStudente());
+				JOptionPane.showMessageDialog(null, student.show());
 				break;
 			case "3":
-				String pw = student.updateStudente(JOptionPane.showInputDialog("PW"));
-				JOptionPane.showMessageDialog(null, student.updateStudente(pw));
+				String pw = student.update(JOptionPane.showInputDialog("PW"));
+				JOptionPane.showMessageDialog(null, student.update(pw));
 				break;
 			case "4":
-				String op = student.deleteStudente();
-				JOptionPane.showMessageDialog(null, student.deleteStudente());
+				String op = student.delete();
+				JOptionPane.showMessageDialog(null, student.delete());
 				break;
 			case "0":
 				return;

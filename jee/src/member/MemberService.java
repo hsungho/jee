@@ -13,8 +13,8 @@ import java.util.Date;
  * @story  :
  */
 public interface MemberService {
-	public void openStudente(String name,String id,String pw,String ssn);
-	public String showStudente();
-	public String updateStudente(String pw);
-	public String deleteStudente();
+	public void open(String name,String id,String pw,String ssn);
+	public String show();
+	public String update(String pw);
+	public String delete();
 }

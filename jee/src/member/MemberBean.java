@@ -16,7 +16,7 @@ import global.Constants;
  */
 public class MemberBean {
 	private String name,id,pw,ssn,regDate,gender;
-	private int age,year,curyear;
+	private int birth,year,curyear;
 	public MemberBean() {
 		// default constructor 기본 생성자
 		// 생성자 오버로딩 
@@ -50,7 +50,7 @@ public class MemberBean {
 		default:
 			break;
 		}
-		this.age = this.curyear - this.year + 1;
+		this.birth = this.curyear - this.year + 1;
 	}
 	public void setPw(String pw){
 		this.pw = pw;
@@ -67,8 +67,8 @@ public class MemberBean {
 	public String getGender(){
 		return this.gender;
 	}
-	public int getAge(){
-		return this.age;
+	public int getBirth(){
+		return this.birth;
 	}
 	public void setName(String name) {
 		this.name = name;
@@ -78,7 +78,7 @@ public class MemberBean {
 	}
 	public String toString() {
 		return Constants.SCHOOL_NAME+" [ 성명=" + name + ", 아이디=" + id + ", 비번=****" + ", 주민번호=" + ssn + ", 등록일=" + regDate
-				+ ", 성별=" + gender + ", 나이=" + age + "]";
+				+ ", 성별=" + gender + ", 나이=" + birth + "]";
 	}
 	
 	
