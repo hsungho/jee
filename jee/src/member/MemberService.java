@@ -13,7 +13,7 @@ import java.util.Date;
  * @story  :
  */
 public interface MemberService {
-	public void open(String name,String id,String pw,String ssn);
+	public String open(MemberBean stu);
 	public String show();
 	public String update(String pw);
 	public String delete();

@@ -11,8 +11,19 @@ public class MemberServiceImpl implements MemberService{
 		// TODO Auto-generated constructor stub
 	}
 	@Override
-	public void open(String name, String id, String pw, String ssn) {
-		s = new MemberBean(name, id, pw, ssn);
+	public String open(MemberBean stu) {
+		//s = new MemberBean(stu.getName(), stu.getId(), stu.getPw(), stu.getSsn());
+		int result = 0;
+		String msg = "";
+		String sql = "insert into member(id,pw,name,reg_date,ssn_id)"
+				+ "values('"+stu.getId()+"','"+stu.getPw()+"','"+stu.getName()+"','"+stu.getRegDate()+"','"+stu.getSsn()+"')";
+		result = dao.exeUpdate(sql);
+		if (result == 1) {
+			msg = "회원가입 축하합니다.";
+		} else {
+			msg = "회원가입 실패";
+		}
+		return msg;
 	}
 	@Override
 	public String show() {

@@ -19,9 +19,16 @@ public class MemberControll {
 		while (true) {
 			switch (JOptionPane.showInputDialog(null, "1 등록 2보기 3수정 4삭제 0종료")) {
 			case "1":
+				MemberBean stu = new MemberBean();
 				String open = JOptionPane.showInputDialog("이름,ID,PW,주민번호[800101-1]");
 				String open1[] = open.split(",");
-				student.open(open1[0], open1[1], open1[2], open1[3]);
+				stu.setName(open1[0]);
+				stu.setId(open1[1]);
+				stu.setPw(open1[2]);
+				stu.setSsn(open1[3]);
+				stu.setRegDate();
+				String result = student.open(stu);
+				JOptionPane.showMessageDialog(null, result);
 				break;
 			case "2":
 				JOptionPane.showMessageDialog(null, student.show());

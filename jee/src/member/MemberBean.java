@@ -26,7 +26,7 @@ public class MemberBean {
 		this.id = id;
 		this.pw = pw;
 		this.ssn = ssn; 
-		this.regDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date(System.currentTimeMillis()));
+		
 		this.curyear = Integer.parseInt(new SimpleDateFormat("yyyy").format(new Date(System.currentTimeMillis())));
 		String[] gendergubun = ssn.split("-");
 		this.year = Integer.parseInt(gendergubun[0].substring(0,2));
@@ -75,6 +75,19 @@ public class MemberBean {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public String getSsn() {
+		return ssn;
+	}
+	public void setSsn(String ssn) {
+		this.ssn = ssn;
+	}
+	public String getPw() {
+		return pw;
+	}
+	
+	public void setRegDate() {
+		this.regDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date(System.currentTimeMillis()));
 	}
 	public String toString() {
 		return Constants.SCHOOL_NAME+" [ 성명=" + name + ", 아이디=" + id + ", 비번=****" + ", 주민번호=" + ssn + ", 등록일=" + regDate
