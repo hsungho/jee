@@ -30,12 +30,11 @@ public class GradeController2 {
 	 * 단] switch case 문으로 변경
 	 */
 	public static void main(String[] args) {
-		GradeService gsr = new GradeServiceImpl();
+		GradeService gsr = GradeServiceImpl.getInstance();
 		// -------------------- 연산부 (알고리즘)----------------------------------
 		while (true) {	
 			switch (JOptionPane.showInputDialog("1 계속 0종료")) {
 			case "1":
-				gsr.setName(JOptionPane.showInputDialog("이름 : "));
 				String subavg = JOptionPane.showInputDialog("점수 과목,과목1,과목2,.,.,. : ");
 				String open1[] = subavg.split(",");
 				for (int i = 0; i < open1.length; i++) {
@@ -44,8 +43,6 @@ public class GradeController2 {
 						continue;
 					}
 				}
-				gsr.setAvg(subavg);
-				JOptionPane.showMessageDialog(null, gsr.setGrade());
 				break;
 			default:
 				return;
