@@ -3,8 +3,7 @@
  */
 package member;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
+import java.util.List;
 
 /**
  * @date   :2016. 6. 17.
@@ -15,6 +14,10 @@ import java.util.Date;
 public interface MemberService {
 	public String open(MemberBean stu);
 	public String show();
-	public String update(String pw);
-	public String delete();
+	public String update(MemberBean stu);
+	public String delete(String id);
+	public int count();
+	public List<MemberBean> list();
+	public List<MemberBean> findByName(String name);
+	public MemberBean findById(String id);
 }

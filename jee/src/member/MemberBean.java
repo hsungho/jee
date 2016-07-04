@@ -70,6 +70,32 @@ public class MemberBean {
 	public int getBirth(){
 		return this.birth;
 	}
+	public void setBirth() {
+		this.curyear = Integer.parseInt(new SimpleDateFormat("yyyy").format(new Date(System.currentTimeMillis())));
+		String[] gendergubun = ssn.split("-");
+		this.year = Integer.parseInt(gendergubun[0].substring(0,2));
+		switch (Integer.parseInt(gendergubun[1])) {
+		case 1:case 5:
+			this.gender = "남";
+			this.year += 1900;
+			break;
+		case 3:case 7:
+			this.gender = "남";
+			this.year += 2000;
+			break;		
+		case 2:case 6:
+			this.gender = "여";
+			this.year += 1900;
+			break;
+		case 4:case 8:
+			this.gender = "여";
+			this.year += 2000;
+			break;
+		default:
+			break;
+		}
+		this.birth = this.curyear - this.year + 1;
+	}
 	public void setName(String name) {
 		this.name = name;
 	}
@@ -85,7 +111,9 @@ public class MemberBean {
 	public String getPw() {
 		return pw;
 	}
-	
+	public void setRegDate(String regDate){
+		this.regDate = regDate;
+	}
 	public void setRegDate() {
 		this.regDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date(System.currentTimeMillis()));
 	}

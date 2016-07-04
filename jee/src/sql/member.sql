@@ -1,5 +1,9 @@
 insert into TEST select 'lee','1' from dual union all select 'ckan','2222' from dual;
-select * from member;
+
+select * from member; -- list
+select * from member where id = 'lee'; -- find By PK
+select * from member where name = '이순신'; -- find By Not PK
+select count(*) from member; -- count
 delete test;
 
 create table member(
@@ -12,7 +16,7 @@ create table member(
 -- Create
 delete member;
 insert into member(id,pw,name,reg_date,ssn_id)
-values('hong','1','홍길동','2016-07-01','800101-1');
+values('hong2','1','홍길동','2016-07-01','800101-1');
 insert into member(id,pw,name,reg_date,ssn_id)
 values('lee','1','이순신','2015-07-01','900101-1');
 insert into member(id,pw,name,reg_date,ssn_id)
@@ -24,5 +28,5 @@ set    pw = '99'
 where id = 'you'
 ;
 delete MEMBER mem
-where mem.id = 'you'
+where mem.id = 'park'
 ;

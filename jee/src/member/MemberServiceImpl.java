@@ -1,5 +1,7 @@
 package member;
 
+import java.util.List;
+
 public class MemberServiceImpl implements MemberService{
 	MemberDAO dao = MemberDAO.getInstance(); // 싱글톤 패턴
 	MemberBean s;
@@ -8,71 +10,33 @@ public class MemberServiceImpl implements MemberService{
 		return instance;
 	}
 	private MemberServiceImpl() {
-		// TODO Auto-generated constructor stub
 	}
 	@Override
 	public String open(MemberBean stu) {
-		//s = new MemberBean(stu.getName(), stu.getId(), stu.getPw(), stu.getSsn());
-		int result = 0;
-		String msg = "";
-		String sql = "insert into member(id,pw,name,reg_date,ssn_id)"
-				+ "values('"+stu.getId()+"','"+stu.getPw()+"','"+stu.getName()+"','"+stu.getRegDate()+"','"+stu.getSsn()+"')";
-		result = dao.exeUpdate(sql);
-		if (result == 1) {
-			msg = "회원가입 축하합니다.";
-		} else {
-			msg = "회원가입 실패";
-		}
-		return msg;
+		return (dao.insert(stu) == 1)?"회원가입 축하합니다.":"회원가입 실패";
 	}
 	@Override
 	public String show() {
-		dao.exeQuery("select * from member");
-		return dao.toString();
+		return "";
 	}
 	@Override
-	public String update(String pw) {
-		s.setPw(pw);
-		return "PW 변경 되었습니다.";
+	public String update(MemberBean stu) {
+		return (dao.update(stu) == 1)?"PW 변경 되었습니다.":"PW 변경 실패했습니다.";
 	}
 	@Override
-	public String delete() {
-		s = null;
-		return "삭제 했습니다.";
+	public String delete(String id) {
+		return (dao.delete(id) == 1)?"삭제 성공 입니다.":"삭제 실패입니다.";
 	}
-	/*String sqlCreate = "create table member("
-	+ "name varchar2(20),"
-	+ "id varchar2(20) primary key,"
-	+ "pw varchar2(20),"
-	+ "ssn_id varchar2(8),"
-	+ "reg_date varchar2(20) "
-	+ ")";
-String sqlDrop = "drop table member";
-String sqlInsert = "insert into member"
-	+ "(name,"
-	+ "id,"
-	+ "pw,"
-	+ "ssn_id,"
-	+ "reg_date"
-	+ ")"
-	+ "select '김유신',"
-	+ "'kim',"
-	+ "'1',"
-	+ "'820101-1',"
-	+ "'2016-06-30' "
-	+ "from dual "
-	+ "union all "
-	+ "select '김혜수',"
-	+ "'haesu',"
-	+ "'1',"
-	+ "'840101-2',"
-	+ "'2014-06-30' "
-	+ "from dual";
-String sqlUpdate = "update member "
-	+ "set pw = '100' "
-	+ "where id = 'you'";
-String sqlDelete = "delete member "
-	+ "where id = 'you'";
-String sqlQuery = "select * from member",result = "";
-*/
+	public int count() {
+		return dao.count();
+	}
+	public MemberBean findById(String id) {
+		return dao.findById(id);
+	}
+	public List<MemberBean> list() {
+		return dao.list();
+	}
+	public List<MemberBean> findByName(String name) {
+		return dao.findByName(name);
+	}
 }

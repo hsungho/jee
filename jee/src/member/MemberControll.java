@@ -15,9 +15,13 @@ import jdk.nashorn.internal.ir.Optimistic;
  */
 public class MemberControll {
 	public static void main(String[] args) { // String[] params
-		MemberServiceImpl student = MemberServiceImpl.getInstance();
+		MemberService student = MemberServiceImpl.getInstance();
 		while (true) {
-			switch (JOptionPane.showInputDialog(null, "1 등록 2보기 3수정 4삭제 0종료")) {
+			switch (JOptionPane.showInputDialog(""
+					+ "---- 회원이 보는 화면 ---\n"
+					+ "1회원가입 2로그인 3내정보보기(detail) 4내정보수정(비번) 5탈퇴 0종료\n"
+					+ "--- 관리자 화면 ---\n"
+					+ "11회원검색 12검색(ID) 13검색(이름) 14검색(성별) 15회원수")) {
 			case "1":
 				MemberBean stu = new MemberBean();
 				String open = JOptionPane.showInputDialog("이름,ID,PW,주민번호[800101-1]");
@@ -27,19 +31,40 @@ public class MemberControll {
 				stu.setPw(open1[2]);
 				stu.setSsn(open1[3]);
 				stu.setRegDate();
+				stu.setBirth();
 				String result = student.open(stu);
 				JOptionPane.showMessageDialog(null, result);
 				break;
 			case "2":
 				JOptionPane.showMessageDialog(null, student.show());
 				break;
-			case "3":
-				String pw = student.update(JOptionPane.showInputDialog("PW"));
-				JOptionPane.showMessageDialog(null, student.update(pw));
-				break;
 			case "4":
-				String op = student.delete();
-				JOptionPane.showMessageDialog(null, student.delete());
+				MemberBean stu1 = new MemberBean();
+				String pw = JOptionPane.showInputDialog("비밀번호 변경 ID,PW 입력");
+				String memArry[] = pw.split(","); 
+				stu1.setId(memArry[0]);
+				stu1.setPw(memArry[1]);
+				JOptionPane.showMessageDialog(null, student.update(stu1));
+				break;
+			case "5":
+				MemberBean stu2 = new MemberBean();
+				String id = JOptionPane.showInputDialog("ID 입력");
+				stu2.setId(id);
+				JOptionPane.showMessageDialog(null, student.delete(id));
+				break;
+			case "11":
+				JOptionPane.showMessageDialog(null, student.list());
+				break;
+			case "12":
+				JOptionPane.showMessageDialog(null, student.findById(JOptionPane.showInputDialog("ID 입력")));
+				break;
+			case "13":
+				JOptionPane.showMessageDialog(null, student.findByName(JOptionPane.showInputDialog("이름 입력")));
+				break;
+			case "14":
+				break;
+			case "15":
+				JOptionPane.showMessageDialog(null, student.count()+" 명");
 				break;
 			case "0":
 				return;

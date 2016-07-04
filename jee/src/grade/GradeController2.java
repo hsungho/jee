@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  * @file   :Avg.java
  * @story  :평균값 구하기 예제
  */
-public class GradeController {
+public class GradeController2 {
 	/**
 	 * 클라이언트에서 프로그램 개발 요청이 왔습니다.
 	 * 이름과 국,영,수 세과목점수를 입력받아서
@@ -30,21 +30,23 @@ public class GradeController {
 	 * 단] switch case 문으로 변경
 	 */
 	public static void main(String[] args) {
-		GradeServiceImpl gsr = GradeServiceImpl.getInstance();
+		GradeService gsr = new GradeServiceImpl();
 		// -------------------- 연산부 (알고리즘)----------------------------------
 		while (true) {	
-			switch (JOptionPane.showInputDialog("1추가 2수정 3삭제 4전체조회 5학점조회 6시퀀스조회 7응시생수 0종료")) {
+			switch (JOptionPane.showInputDialog("1 계속 0종료")) {
 			case "1":
-				
-				JOptionPane.showMessageDialog(null, "");
+				gsr.setName(JOptionPane.showInputDialog("이름 : "));
+				String subavg = JOptionPane.showInputDialog("점수 과목,과목1,과목2,.,.,. : ");
+				String open1[] = subavg.split(",");
+				for (int i = 0; i < open1.length; i++) {
+					if (Integer.parseInt(open1[i]) > 100 || Integer.parseInt(open1[i]) < 0){
+						JOptionPane.showMessageDialog(null, "점수는 0~100 까지 가능합니다.");
+						continue;
+					}
+				}
+				gsr.setAvg(subavg);
+				JOptionPane.showMessageDialog(null, gsr.setGrade());
 				break;
-			case "2":break;
-			case "3":break;
-			case "4":break;
-			case "5":break;
-			case "6":break;
-			case "7":break;
-			case "0":return;
 			default:
 				return;
 			}
