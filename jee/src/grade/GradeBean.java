@@ -1,33 +1,58 @@
 package grade;
 
 public class GradeBean {
-	private String name,hakjum;
-	private int kor,eng,math,seq;
-	private static GradeBean instance = new GradeBean();
-	private GradeBean() {
+	private String id,grade,examdate,className;
+	private int java,sql,html,javascript,seq,updatescore;
+	public GradeBean() {
 	}
-	
-	public static GradeBean getInstance() {
-		return instance;
+	public String getClassName() {
+		return className;
+	}
+	public int getUpdatescore() {
+		return updatescore;
+	}
+	public void setUpdatescore(int updatescore) {
+		this.updatescore = updatescore;
+	}
+	public void setClassName(String className) {
+		this.className = className;
 	}
 
-	public int getKor() {
-		return kor;
+	public String getId() {
+		return id;
 	}
-	public void setKor(int kor) {
-		this.kor = kor;
+	public void setId(String id) {
+		this.id = id;
 	}
-	public int getEng() {
-		return eng;
+	public String getGrade() {
+		return grade;
 	}
-	public void setEng(int eng) {
-		this.eng = eng;
+	public void setGrade(String grade) {
+		this.grade = grade;
 	}
-	public int getMath() {
-		return math;
+	public int getJava() {
+		return java;
 	}
-	public void setMath(int math) {
-		this.math = math;
+	public void setJava(int java) {
+		this.java = java;
+	}
+	public int getSql() {
+		return sql;
+	}
+	public void setSql(int sql) {
+		this.sql = sql;
+	}
+	public int getHtml() {
+		return html;
+	}
+	public void setHtml(int html) {
+		this.html = html;
+	}
+	public int getJavascript() {
+		return javascript;
+	}
+	public void setJavascript(int javascript) {
+		this.javascript = javascript;
 	}
 	public int getSeq() {
 		return seq;
@@ -35,20 +60,15 @@ public class GradeBean {
 	public void setSeq(int seq) {
 		this.seq = seq;
 	}
-	public void setName(String name){
-		this.name = name;
+	public String getExamDate() {
+		return examdate;
 	}
-	public String getName(){
-		return name;
+	public void setExamDate(String examdate) {
+		this.examdate = examdate;
 	}
-	public String getHakjum() {
-		return hakjum;
-	}
-	public void setHakjum(String hakjum) {
-		this.hakjum = hakjum;
-	}
+	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		return super.toString();
+		return "성적표 [No. " + seq + " 아이디 : " + id + " 시험일자 : "+examdate+" 학점 : " + grade + "\n"
+				+ " 자바 : " + java + " SQL : " + sql + " HTML5 : " + html+ " 자바스크립트 : " + javascript + "] \n";
 	}
 }

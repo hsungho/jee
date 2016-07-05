@@ -3,8 +3,6 @@
  */
 package grade;
 
-import java.util.Scanner;
-
 import javax.swing.JOptionPane;
 
 /**
@@ -30,20 +28,41 @@ public class GradeController {
 	 * 단] switch case 문으로 변경
 	 */
 	public static void main(String[] args) {
-		GradeServiceImpl gsr = GradeServiceImpl.getInstance();
+		GradeServiceImpl service = GradeServiceImpl.getInstance();
 		// -------------------- 연산부 (알고리즘)----------------------------------
 		while (true) {	
-			switch (JOptionPane.showInputDialog("1추가 2수정 3삭제 4전체조회 5학점조회 6시퀀스조회 7응시생수 0종료")) {
+			switch (JOptionPane.showInputDialog("1추가 2수정 3삭제 4전체조회 5학점을 포함한 시험내역 조회(SEQ)"
+					+ "6시퀀스조회(ID) 7응시생수(시험일자별) 0종료")) {
 			case "1":
-				
-				JOptionPane.showMessageDialog(null, "");
+				JOptionPane.showMessageDialog(null, service.score(JOptionPane.showInputDialog("ID,JAVA,SQL,HTML5,JavaScript,시험일자[2016-05] 입력").split(",")));
 				break;
-			case "2":break;
-			case "3":break;
-			case "4":break;
-			case "5":break;
-			case "6":break;
-			case "7":break;
+			case "2":
+				GradeBean grade1 = new GradeBean();
+				String mark1 = JOptionPane.showInputDialog("수정 SEQ,과목명,점수 입력");
+				String arrayMark1[] = mark1.split(",");
+				grade1.setSeq(Integer.parseInt(arrayMark1[0]));
+				grade1.setClassName(arrayMark1[1]);
+				grade1.setUpdatescore(Integer.parseInt(arrayMark1[2]));
+				JOptionPane.showMessageDialog(null, service.update(grade1));
+				break;
+			case "3":
+				GradeBean grade2 = new GradeBean();
+				String mark2 = JOptionPane.showInputDialog("삭제 SEQ 입력");
+				grade2.setSeq(Integer.parseInt(mark2));
+				JOptionPane.showMessageDialog(null, service.delete(grade2));
+				break;
+			case "4":
+				JOptionPane.showMessageDialog(null, service.list());
+				break;
+			case "5":
+				JOptionPane.showMessageDialog(null, service.findBySeq(Integer.parseInt(JOptionPane.showInputDialog("조회 SEQ 입력"))));
+				break;
+			case "6":
+				JOptionPane.showMessageDialog(null, service.findById(JOptionPane.showInputDialog("조회 ID 입력")));
+				break;
+			case "7":
+				JOptionPane.showMessageDialog(null, service.count(JOptionPane.showInputDialog("시험일자[2016-05] 입력"))+" 명");
+				break;
 			case "0":return;
 			default:
 				return;

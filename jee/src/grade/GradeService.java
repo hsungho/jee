@@ -5,12 +5,13 @@ import java.util.List;
 public interface GradeService {
 	// 총 7개의 기본 패턴이 존재하더라
 	// exeu
-	public int insert(GradeBean grade);
-	public int update(GradeBean grade);
-	public int delete(GradeBean grade);
+	public String insert(GradeBean grade);
+	public String update(GradeBean grade);
+	public String delete(GradeBean grade);
 	// exeQ
 	public List<GradeBean> list();
-	public List<GradeBean> findByHakjum();
-	public GradeBean findBySeq();
-	public int count();
+	public List<GradeBean> findById(String id);
+	public GradeBean findBySeq(int seq);
+	public int count(String examDate);
+	public String score(String[] a);
 }

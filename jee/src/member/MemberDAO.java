@@ -51,7 +51,7 @@ public class MemberDAO {
 
 		try {
 			Class.forName(Constants.ORACLE_DRIVER);
-			con = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PW);
+			con = DriverManager.getConnection(Constants.ORACLE_URL, Constants.USER_ID, Constants.USER_PW);
 			stmt = con.createStatement();
 			result = stmt.executeUpdate(sql);
 		} catch (Exception e) {
@@ -65,7 +65,7 @@ public class MemberDAO {
 		List<MemberBean> tempList = new ArrayList<MemberBean>();
 		try {
 			Class.forName(Constants.ORACLE_DRIVER);
-			con = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PW);
+			con = DriverManager.getConnection(Constants.ORACLE_URL, Constants.USER_ID, Constants.USER_PW);
 			stmt = con.createStatement();
 			set = stmt.executeQuery(sql);
 			while (set.next()) {
@@ -84,7 +84,7 @@ public class MemberDAO {
 		MemberBean tempBean = null;
 		try {
 			Class.forName(Constants.ORACLE_DRIVER);
-			con = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PW);
+			con = DriverManager.getConnection(Constants.ORACLE_URL, Constants.USER_ID, Constants.USER_PW);
 			stmt = con.createStatement();
 			set = stmt.executeQuery(sql);
 			if (set.next()) {
@@ -103,7 +103,7 @@ public class MemberDAO {
 		List<MemberBean> tempList = new ArrayList<MemberBean>();
 		try {
 			Class.forName(Constants.ORACLE_DRIVER);
-			con = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PW);
+			con = DriverManager.getConnection(Constants.ORACLE_URL, Constants.USER_ID, Constants.USER_PW);
 			stmt = con.createStatement();
 			set = stmt.executeQuery(sql);
 			while (set.next()) {
@@ -122,7 +122,7 @@ public class MemberDAO {
 		String sql = "select count(*) count from member ";
 		try {
 			Class.forName(Constants.ORACLE_DRIVER);
-			con = DriverManager.getConnection(Constants.ORACLE_URL, Constants.ORACLE_ID, Constants.ORACLE_PW);
+			con = DriverManager.getConnection(Constants.ORACLE_URL, Constants.USER_ID, Constants.USER_PW);
 			stmt = con.createStatement();
 			set = stmt.executeQuery(sql);
 			if (set.next()) {
