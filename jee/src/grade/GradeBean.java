@@ -1,7 +1,7 @@
 package grade;
 
 public class GradeBean {
-	private String id,grade,examdate,className;
+	private String id,grade,examdate,className,name;
 	private int java,sql,html,javascript,seq,updatescore;
 	public GradeBean() {
 	}
@@ -66,9 +66,15 @@ public class GradeBean {
 	public void setExamDate(String examdate) {
 		this.examdate = examdate;
 	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	@Override
 	public String toString() {
-		return "성적표 [No. " + seq + " 아이디 : " + id + " 시험일자 : "+examdate+" 학점 : " + grade + "\n"
+		return "성적표 [No. " + seq + " 이름 : " + name +" 아이디 : " + id + " 시험일자 : "+examdate+" 학점 : " + grade + "\n"
 				+ " 자바 : " + java + " SQL : " + sql + " HTML5 : " + html+ " 자바스크립트 : " + javascript + "] \n";
 	}
 }

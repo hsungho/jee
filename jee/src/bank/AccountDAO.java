@@ -15,7 +15,7 @@ import global.Constants;
  * @file   :BankDAO.java 
  * @story  :
  */
-public class BankDAO {
+public class AccountDAO {
 	public static void main(String[] args) {
 		Connection con = null;
 		Statement stmt = null;

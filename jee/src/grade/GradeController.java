@@ -52,7 +52,7 @@ public class GradeController {
 				JOptionPane.showMessageDialog(null, service.delete(grade2));
 				break;
 			case "4":
-				JOptionPane.showMessageDialog(null, service.list());
+				GradeUI ui = new GradeUI();
 				break;
 			case "5":
 				JOptionPane.showMessageDialog(null, service.findBySeq(Integer.parseInt(JOptionPane.showInputDialog("조회 SEQ 입력"))));

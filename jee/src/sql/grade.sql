@@ -55,3 +55,68 @@ where  seq = 1000
 -- delete : delete
 delete from grade where  seq = 1000;
 drop table grade;
+-----------------view--------------------------------
+--- 뷰 권한주기
+sqlplus system/dksckdrb;
+grant dba to hanbit;
+create view grade_view as
+select g.seq
+      ,m.name
+      ,g.grade
+      ,g.exam_date
+      ,g.java
+      ,g.sql
+      ,g.html
+      ,g.javascript
+      ,g.id
+from   grade g,member m
+where  g.id = m.id
+;
+select *
+from grade_view
+;
+drop view grade_view;
+-- join 조인
+create view grade_member as
+select g.seq,
+       g.exam_date,
+       g.grade,
+       g.java,
+       g.sql,
+       g.html,
+       g.javascript js,
+       m.id,
+       m.pw,
+       m.name,
+       m.reg_date,
+       m.ssn_id
+from   grade g,member m
+where  g.id = m.id
+;
+select *
+from   grade_member
+;
+insert into grade_member
+(seq,
+ exam_date,
+ grade,
+ java,
+ sql,
+ html,
+ js,
+ id,
+ pw,
+ name,
+ reg_date,
+ ssn_id
+)
+values(
+seq.nextval,
+'2016-06',
+'B',
+80,
+80,
+80,
+80,
+
+)

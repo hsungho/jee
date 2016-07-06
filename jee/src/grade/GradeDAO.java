@@ -83,13 +83,11 @@ public class GradeDAO {
 	}
 	// list
 	public List<GradeBean> list() {
-		String sql = "select * from grade";
+		String sql = "select * from grade_view order by name,exam_date";
 		List<GradeBean> tempList = new ArrayList<GradeBean>();
 		try {
-			Class.forName(Constants.ORACLE_DRIVER);
-			con = DriverManager.getConnection(Constants.ORACLE_URL, Constants.USER_ID, Constants.USER_PW);
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(sql);
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				GradeBean mem = new GradeBean();
 				mem.setSeq(rs.getInt("SEQ"));
@@ -100,6 +98,7 @@ public class GradeDAO {
 				mem.setJavascript(rs.getInt("JAVASCRIPT"));
 				mem.setId(rs.getString("ID"));
 				mem.setExamDate(rs.getString("EXAM_DATE"));
+				mem.setName(rs.getString("NAME"));
 				tempList.add(mem);
 			}
 		} catch (Exception e) {
@@ -109,13 +108,12 @@ public class GradeDAO {
 	}
 	// findByPK
 	public GradeBean findBySeq(int seq) {
-		String sql = "select * from grade where seq = '" + seq + "'";
+		String sql = "select * from grade_view where seq = ? order by name,exam_date";
 		GradeBean tempBean = null;
 		try {
-			Class.forName(Constants.ORACLE_DRIVER);
-			con = DriverManager.getConnection(Constants.ORACLE_URL, Constants.USER_ID, Constants.USER_PW);
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(sql);
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, seq);
+			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				tempBean = new GradeBean();
 				tempBean.setSeq(rs.getInt("SEQ"));
@@ -126,6 +124,7 @@ public class GradeDAO {
 				tempBean.setJavascript(rs.getInt("JAVASCRIPT"));
 				tempBean.setId(rs.getString("ID"));
 				tempBean.setExamDate(rs.getString("EXAM_DATE"));
+				tempBean.setName(rs.getString("NAME"));
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -135,13 +134,12 @@ public class GradeDAO {
 	}
 	// findByName
 	public List<GradeBean> findById(String id) {
-		String sql = "select * from grade where id = '" + id + "'";
+		String sql = "select * from grade where id = ? order by name,exam_date";
 		List<GradeBean> tempList = new ArrayList<GradeBean>();
 		try {
-			Class.forName(Constants.ORACLE_DRIVER);
-			con = DriverManager.getConnection(Constants.ORACLE_URL, Constants.USER_ID, Constants.USER_PW);
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(sql);
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
 			while (rs.next()) {
 				GradeBean mem = new GradeBean();
 				mem.setSeq(rs.getInt("SEQ"));
@@ -152,6 +150,7 @@ public class GradeDAO {
 				mem.setJavascript(rs.getInt("JAVASCRIPT"));
 				mem.setId(rs.getString("ID"));
 				mem.setExamDate(rs.getString("EXAM_DATE"));
+				mem.setName(rs.getString("NAME"));
 				tempList.add(mem);
 			}
 		} catch (Exception e) {
@@ -161,16 +160,16 @@ public class GradeDAO {
 	}
 	public int count(String examDate) {
 		int result = 0;
-		String sql = "select count(*) count from grade where exam_date = '"+examDate+"'";
+		String sql = "select count(*) count from grade where exam_date = ?";
 		try {
-			Class.forName(Constants.ORACLE_DRIVER);
-			con = DriverManager.getConnection(Constants.ORACLE_URL, Constants.USER_ID, Constants.USER_PW);
-			stmt = con.createStatement();
-			rs = stmt.executeQuery(sql);
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1,examDate);
+			rs = pstmt.executeQuery();
 			if (rs.next()) {
 				result = rs.getInt("count");
 			}
 		} catch (Exception e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return result;

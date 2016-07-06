@@ -92,10 +92,6 @@ public class GradeServiceImpl implements GradeService{
 		return (dao.delete(grade) == 0)?"삭제 실패":"삭제 성공";
 	}
 	@Override
-	public List<GradeBean> list() {
-		return dao.list();
-	}
-	@Override
 	public List<GradeBean> findById(String id) {
 		return dao.findById(id);
 	}
@@ -119,6 +115,10 @@ public class GradeServiceImpl implements GradeService{
 		g.setJavascript(Integer.parseInt(a[4]));
 		g.setExamDate(a[5]);
 		return this.insert(g);
+	}
+	@Override
+	public List<GradeBean> list() {
+		return dao.list();
 	}
 	
 }
