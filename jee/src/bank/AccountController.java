@@ -19,6 +19,7 @@ import global.Constants;
  * @story  :
  */
 public class AccountController {
+	AccountService service = AccountServiceImpl.getInstance();
 	public static void main(String[] args) {
 		// 1개설 2입금 3출금 4수정 5해지 6조회(전체) 7조회(계좌번호) 8조회(이름) 9조회(전체통장수)
 		while (true) {

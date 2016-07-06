@@ -12,58 +12,54 @@ import java.util.List;
  * @story  :계좌 인터페이스
  */
 public class AccountServiceImpl implements AccountService {
-
-	@Override
-	public void openAccount(AccountBean account) {
-		// TODO Auto-generated method stub
-		
+	AccountDAO dao = null;
+	private AccountServiceImpl() {
+		dao = AccountDAO.getInstance();
 	}
-
-	@Override
+	private static AccountServiceImpl instance = new AccountServiceImpl();
+	public static AccountServiceImpl getInstance() {
+		return instance;
+	}
+	public String openAccount(AccountBean account) {
+		String msg = "";
+		if (dao.findId(account.getId()) == 0) {
+			msg = "존재하지 않는 ID 입니다.";
+			return msg;
+		}
+		if (dao.insert(account) == 0){
+			msg = "계좌개설 성공 했습니다.";
+		} else{
+			msg = "계좌개설을 실패 했습니다.";
+		}
+		return msg;
+	}
 	public String deposit(int inputMoney) {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
 	public String withdrawal(int output) {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
 	public String updateAccount(AccountBean acc) {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
-	public void deleteAccount() {
-		// TODO Auto-generated method stub
-		
+	public String deleteAccount() {
+		return null;
 	}
-
-	@Override
 	public List<AccountBean> accountList() {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
 	public AccountBean findByAccountNo(String accountNo) {
-		// TODO Auto-generated method stub
 		return null;
 	}
-
-	@Override
 	public List<AccountBean> findByName(String name) {
-		// TODO Auto-generated method stub
 		return null;
+	}
+	public String count() {
+		return null;
+	}
+	public int findId(String id) {
+		return dao.findId(id);
 	}
 
-	@Override
-	public String count() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 }

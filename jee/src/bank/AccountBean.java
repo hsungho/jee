@@ -12,8 +12,8 @@ import javax.swing.JOptionPane;
  * @story  :
  */
 public class AccountBean {
-	private int accountNo,deposit,withdraw,money; // 인스턴스 변수는 초기화를 하지 않는다. private 암호화 되어 있다. 보안
-	private String name,id,tellerDate,pw;
+	private int accountNo,money; // 인스턴스 변수는 초기화를 하지 않는다. private 암호화 되어 있다. 보안
+	private String name,id,pw;
 	public AccountBean() {
 		// default constructor 기본 생성자
 		// 생성자 오버로딩 
@@ -28,20 +28,8 @@ public class AccountBean {
 		return accountNo;
 	}
 
-	public void setAccountNo(int accountNo) {
+	public void setAccountNo() {
 		this.accountNo = (int) (Math.random() * 999999)+100000;
-	}
-	public int getDeposit() {
-		return deposit;
-	}
-	public void setDeposit(int deposit) {
-		this.deposit = deposit;
-	}
-	public int getWithdraw() {
-		return withdraw;
-	}
-	public void setWithdraw(int withdraw) {
-		this.withdraw = withdraw;
 	}
 	public String getName() {
 		return name;
@@ -54,12 +42,6 @@ public class AccountBean {
 	}
 	public void setId(String id) {
 		this.id = id;
-	}
-	public String getTellerDate() {
-		return tellerDate;
-	}
-	public void setTellerDate(String tellerDate) {
-		this.tellerDate = tellerDate;
 	}
 	public int getMoney() {
 		return money;

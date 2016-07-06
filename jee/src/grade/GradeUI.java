@@ -25,7 +25,7 @@ public class GradeUI extends JFrame{
 		this.setLayout();
 		this.setResizable(false);//frame abort resize
 		this.setLocationRelativeTo(null);//frame load at center of screen
-		this.setSize(700, 300);//frame set size width, height
+		this.setSize(800, 300);//frame set size width, height
 		this.setVisible(true);//frame set visible mode (false - non-visible)
 		this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);//x btn of frame is end of frame
 	}

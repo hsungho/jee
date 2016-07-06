@@ -83,7 +83,7 @@ public class GradeDAO {
 	}
 	// list
 	public List<GradeBean> list() {
-		String sql = "select * from grade_view order by name,exam_date";
+		String sql = "select * from grade_view order by name,id,exam_date";
 		List<GradeBean> tempList = new ArrayList<GradeBean>();
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -108,7 +108,7 @@ public class GradeDAO {
 	}
 	// findByPK
 	public GradeBean findBySeq(int seq) {
-		String sql = "select * from grade_view where seq = ? order by name,exam_date";
+		String sql = "select * from grade_view where seq = ? order by name,id,exam_date";
 		GradeBean tempBean = null;
 		try {
 			pstmt = con.prepareStatement(sql);
@@ -134,7 +134,7 @@ public class GradeDAO {
 	}
 	// findByName
 	public List<GradeBean> findById(String id) {
-		String sql = "select * from grade where id = ? order by name,exam_date";
+		String sql = "select * from grade where id = ? order by name,id,exam_date";
 		List<GradeBean> tempList = new ArrayList<GradeBean>();
 		try {
 			pstmt = con.prepareStatement(sql);

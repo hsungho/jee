@@ -5,7 +5,8 @@ NOCYCLE
 ;
 
 create table grade(
-	seq	       number constraint grade_pk primary key,	
+	seq	       number constraint grade_pk primary key,
+	exam_date  varchar2(10),
 	grade      varchar2(1),
 	java       number,
 	sql        number,
@@ -96,19 +97,21 @@ where  g.id = m.id
 select *
 from   grade_member
 ;
-insert into grade_member
-(seq,
- exam_date,
- grade,
- java,
- sql,
- html,
- js,
- id,
- pw,
- name,
- reg_date,
- ssn_id
+insert into
+(select g.seq,
+       g.exam_date,
+       g.grade,
+       g.java,
+       g.sql,
+       g.html,
+       g.javascript js,
+       m.id,
+       m.pw,
+       m.name,
+       m.reg_date,
+       m.ssn_id
+from   grade g,member m
+where  g.id = m.id
 )
 values(
 seq.nextval,
@@ -118,5 +121,9 @@ seq.nextval,
 80,
 80,
 80,
-
-)
+'ckan',
+'7777',
+'안중근',
+to_char(sysdate,'YYYY-MM-DD HH24:MI:SS'),
+'700101-1'
+);
