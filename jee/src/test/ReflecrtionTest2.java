@@ -1,6 +1,6 @@
 package test;
 
-import bank.AccountBean;
+import account.AccountBean;
 
 /**
  * @date   :2016. 7. 1.
