@@ -59,7 +59,7 @@ public class MemberControll {
 				JOptionPane.showMessageDialog(null, student.findById(JOptionPane.showInputDialog("ID 입력")));
 				break;
 			case "13":
-				JOptionPane.showMessageDialog(null, student.findByName(JOptionPane.showInputDialog("이름 입력")));
+				JOptionPane.showMessageDialog(null, student.findBy(JOptionPane.showInputDialog("이름 입력")));
 				break;
 			case "14":
 				break;

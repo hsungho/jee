@@ -3,7 +3,9 @@
  */
 package account;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @date   :2016. 6. 20.
@@ -13,8 +15,10 @@ import java.util.List;
  */
 public class AccountServiceImpl implements AccountService {
 	AccountDAO dao = null;
+	private Map<?,?> map;
 	private AccountServiceImpl() {
 		dao = AccountDAO.getInstance();
+		map = new HashMap<String,AccountMemberBean>();
 	}
 	private static AccountServiceImpl instance = new AccountServiceImpl();
 	public static AccountServiceImpl getInstance() {
@@ -64,6 +68,7 @@ public class AccountServiceImpl implements AccountService {
 	public String withdrawal(AccountBean account) {
 		String msg = "";
 		AccountBean acct = new AccountBean();
+		AccountMemberBean amb = new AccountMemberBean();
 		if (findAccount(account.getAccountNo()) == 0) {
 			msg = "계좌번호가 존재 하지않습니다.";
 			return msg;
@@ -72,7 +77,7 @@ public class AccountServiceImpl implements AccountService {
 			msg = "비밀 번호가 맞지 않습니다.";
 			return msg;
 		}
-		acct = this.findByAccountNo(account.getAccountNo());
+		amb = this.findByAccountNo(account.getAccountNo());
 		if (acct.getMoney() < account.getMoney()) {
 			msg = "잔액이 부족 합니다.";
 		}else{
@@ -108,13 +113,13 @@ public class AccountServiceImpl implements AccountService {
 		}
 		return msg;
 	}
-	public List<AccountBean> accountList() {
-		return dao.findList();
+	public List<?> list() {
+		return dao.selectAll();
 	}
-	public AccountBean findByAccountNo(int accountNo) {
+	public AccountMemberBean findByAccountNo(int accountNo) {
 		return dao.findByAccountNo(accountNo);
 	}
-	public List<AccountBean> findByName(String name) {
+	public List<?> findBy(String name) {
 		return dao.findByName(name);
 	}
 	public int count() {
@@ -135,5 +140,10 @@ public class AccountServiceImpl implements AccountService {
 	@Override
 	public int findPw(AccountBean account) {
 		return dao.findPw(account);
+	}
+	@Override
+	public Map<?, ?> map() {
+		map = dao.selectMap();
+		return map;
 	}
 }

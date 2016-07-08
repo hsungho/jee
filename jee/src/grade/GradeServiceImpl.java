@@ -1,6 +1,7 @@
 package grade;
 
 import java.util.List;
+import java.util.Map;
 
 public class GradeServiceImpl implements GradeService{
 	GradeDAO dao = GradeDAO.getInstance();
@@ -92,7 +93,7 @@ public class GradeServiceImpl implements GradeService{
 		return (dao.delete(grade) == 0)?"삭제 실패":"삭제 성공";
 	}
 	@Override
-	public List<GradeBean> findById(String id) {
+	public List<?> findBy(String id) {
 		return dao.findById(id);
 	}
 	@Override
@@ -117,8 +118,18 @@ public class GradeServiceImpl implements GradeService{
 		return this.insert(g);
 	}
 	@Override
-	public List<GradeBean> list() {
+	public List<?> list() {
 		return dao.list();
+	}
+	@Override
+	public int count() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+	@Override
+	public Map<?, ?> map() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

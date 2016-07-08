@@ -7,7 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.sun.corba.se.impl.orbutil.closure.Constant;
 
@@ -137,20 +139,21 @@ public class AccountDAO {
 		}
 		return result;
 	}
-	public AccountBean findByAccountNo(int accountNo) {
+	public AccountMemberBean findByAccountNo(int accountNo) {
 		String sql = "select * from account_member where account_no = ? ";
-		AccountBean tempBean = null;
+		AccountMemberBean tempBean = null;
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setInt(1, accountNo);
 			rs = pstmt.executeQuery();
 			if (rs.next()) {
-				tempBean = new AccountBean();
+				tempBean = new AccountMemberBean();
 				tempBean.setAccountNo(rs.getInt("ACCOUNT_NO"));
 				tempBean.setName(rs.getString("NAME"));
 				tempBean.setId(rs.getString("ID"));
 				tempBean.setMoney(rs.getInt("MONEY"));
 				tempBean.setPw(rs.getString("PW"));
+				tempBean.setSsn(rs.getString("SSN_ID").substring(0, 6));
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -174,19 +177,28 @@ public class AccountDAO {
 		}
 		return result;
 	}
-	public List<AccountBean> findList() {
-		String sql = "select * from account_member order by name,id,account_no";
-		List<AccountBean> tempList = new ArrayList<AccountBean>();
+	public List<?> selectAll() {
+		String sql = "select "
+				+ "account_no,"
+				+ "id,"
+				+ "name,"
+				+ "money,"
+				+ "pw, "
+				+ "ssn_id "
+				+ "from account_member "
+				+ "order by name,id,account_no";
+		List<AccountMemberBean> tempList = new ArrayList<AccountMemberBean>();
 		try {
 			pstmt = con.prepareStatement(sql);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				AccountBean mem = new AccountBean();
-				mem.setAccountNo(rs.getInt("ACCOUNT_NO"));
-				mem.setName(rs.getString("NAME"));
-				mem.setId(rs.getString("ID"));
-				mem.setMoney(rs.getInt("MONEY"));
-				mem.setPw(rs.getString("PW"));
+				AccountMemberBean mem = new AccountMemberBean();
+				mem.setAccountNo(rs.getInt("account_no"));
+				mem.setName(rs.getString("name"));
+				mem.setId(rs.getString("id"));
+				mem.setMoney(rs.getInt("money"));
+				mem.setPw(rs.getString("pw"));
+				mem.setSsn(rs.getString("ssn_id").substring(0, 6));
 				tempList.add(mem);
 			}
 		} catch (Exception e) {
@@ -194,22 +206,23 @@ public class AccountDAO {
 		}
 		return tempList;
 	}
-	public List<AccountBean> findByName(String name) {
+	public List<?> findByName(String name) {
 		String sql = "select * from account_member "
 				+ " where name = ? "
 				+ "order by name,id,account_no ";
-		List<AccountBean> tempList = new ArrayList<AccountBean>();
+		List<AccountMemberBean> tempList = new ArrayList<AccountMemberBean>();
 		try {
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, name);
 			rs = pstmt.executeQuery();
 			while (rs.next()) {
-				AccountBean mem = new AccountBean();
+				AccountMemberBean mem = new AccountMemberBean();
 				mem.setAccountNo(rs.getInt("ACCOUNT_NO"));
 				mem.setName(rs.getString("NAME"));
 				mem.setId(rs.getString("ID"));
 				mem.setMoney(rs.getInt("MONEY"));
 				mem.setPw(rs.getString("PW"));
+				mem.setSsn(rs.getString("SSN_ID").substring(0, 6));
 				tempList.add(mem);
 			}
 		} catch (Exception e) {
@@ -251,5 +264,27 @@ public class AccountDAO {
 			e.printStackTrace();
 		}
 		return result;
+	}
+	public Map<?, ?> selectMap() {
+		Map<String, AccountMemberBean> map = new HashMap<String,AccountMemberBean>();
+		String sql = "select * from account_member";
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			while (rs.next()) {
+				AccountMemberBean mm = new AccountMemberBean();
+				mm.setAccountNo(rs.getInt("account_no"));
+				mm.setName(rs.getString("name"));
+				mm.setId(rs.getString("id"));
+				mm.setMoney(rs.getInt("money"));
+				mm.setPw(rs.getString("pw"));
+				mm.setBirth(rs.getString("ssn_id").substring(0, 6));
+				map.put(String.valueOf(mm.getAccountNo()), mm);
+			}
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return map;
 	}
 }

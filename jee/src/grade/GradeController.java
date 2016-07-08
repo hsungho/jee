@@ -58,7 +58,7 @@ public class GradeController {
 				JOptionPane.showMessageDialog(null, service.findBySeq(Integer.parseInt(JOptionPane.showInputDialog("조회 SEQ 입력"))));
 				break;
 			case "6":
-				JOptionPane.showMessageDialog(null, service.findById(JOptionPane.showInputDialog("조회 ID 입력")));
+				JOptionPane.showMessageDialog(null, service.findBy(JOptionPane.showInputDialog("조회 ID 입력")));
 				break;
 			case "7":
 				JOptionPane.showMessageDialog(null, service.count(JOptionPane.showInputDialog("시험일자[2016-05] 입력"))+" 명");

@@ -26,14 +26,14 @@ public class AccountUI extends JFrame{
 		this.setLayout();
 		this.setResizable(false);//frame abort resize
 		this.setLocationRelativeTo(null);//frame load at center of screen
-		this.setSize(600, 300);//frame set size width, height
+		this.setSize(500, 300);//frame set size width, height
 		this.setVisible(true);//frame set visible mode (false - non-visible)
 		this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);//x btn of frame is end of frame
 	}
 	private void setLayout() {
 		wrapper_panel = new JPanel();
 		flow_panel = new JPanel(new FlowLayout());
-		itemList = new JList(AccountServiceImpl.getInstance().accountList().toArray());
+		itemList = new JList(AccountServiceImpl.getInstance().list().toArray());
 		itemList.setSelectedIndex(0);
 		itemList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		wrapper_panel.add(itemList);

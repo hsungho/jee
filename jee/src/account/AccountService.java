@@ -3,7 +3,7 @@
  */
 package account;
 
-import java.util.List;
+import global.CommonService;
 
 /**
  * @date   :2016. 6. 20.
@@ -11,7 +11,7 @@ import java.util.List;
  * @file   :AccountService.java
  * @story  :
  */
-public interface AccountService {
+public interface AccountService extends CommonService{
 	    // 1개설 2입금 3출금 4수정 5해지 6조회(전체) 7조회(계좌번호) 8조회(이름) 9조회(전체통장수)
 		// AccountBean account = null; 인터페이스는 iv 를 갔지않는다.
 		// 1개설
@@ -24,14 +24,8 @@ public interface AccountService {
 		public String updateAccount(AccountBean acc);// AccountNo,PW
 		// 5해지
 		public String deleteAccount(int accountNo);
-		// 6조회(전체)
-		public List<AccountBean> accountList();
 		// 7조회(계좌번호)
-		public AccountBean findByAccountNo(int accountNo);
-		// 8조회(이름)
-		public List<AccountBean> findByName(String name);
-		// 9조회(전체통장수)
-		public int count();
+		public AccountMemberBean findByAccountNo(int accountNo);
 		// 10 id 존재여부 조회
 		public int findId(String id);
 		// 11 계좌번호 존재여부 조회

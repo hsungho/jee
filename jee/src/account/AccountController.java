@@ -3,15 +3,10 @@
  */
 package account;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
-
 import javax.swing.JOptionPane;
 
-import global.Constants;
-import grade.GradeUI;
+import member.MemberService;
+import member.MemberServiceImpl;
 
 /**
  * @date   :2016. 6. 15.
@@ -23,10 +18,11 @@ public class AccountController {
 	
 	public static void main(String[] args) {
 		AccountService service = AccountServiceImpl.getInstance();
+		MemberService memberservice = MemberServiceImpl.getInstance();
 		// 1개설 2입금 3출금 4수정 5해지 6조회(전체) 7조회(계좌번호) 8조회(이름) 9조회(전체통장수)
 		while (true) {
 			switch (JOptionPane.showInputDialog("1개설 2입금 3출금 4수정 5해지 "
-					+ "6조회(전체) 7조회(계좌번호) 8조회(이름) 9조회(전체통장수) 0종료")) {
+					+ "6조회(전체) 7조회(계좌번호) 8조회(이름) 9조회(전체통장수) 10로그인 0종료")) {
 			case "1":
 				String spec = JOptionPane.showInputDialog("이름,ID,PW 입력");
 				JOptionPane.showMessageDialog(null, service.openAccount(spec));
@@ -70,10 +66,13 @@ public class AccountController {
 				break;
 			case "8":
 				String spec6 = JOptionPane.showInputDialog("조회 성명 입력");
-				JOptionPane.showMessageDialog(null, service.findByName(spec6));
+				JOptionPane.showMessageDialog(null, service.findBy(spec6));
 				break;
 			case "9":
 				JOptionPane.showMessageDialog(null, service.count()+" 건 조회");
+				break;
+			case "10":
+				
 				break;
 			case "0":
 				return;

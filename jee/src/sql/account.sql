@@ -18,6 +18,7 @@ select a.account_no
       ,m.id
       ,a.money
       ,a.pw
+      ,m.ssn_id
 from   account a,member m
 where  a.id = m.id
 ;

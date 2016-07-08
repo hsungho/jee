@@ -1,9 +1,15 @@
 package member;
 
 import java.util.List;
+import java.util.Map;
+
+import account.AccountService;
+import account.AccountServiceImpl;
 
 public class MemberServiceImpl implements MemberService{
 	MemberDAO dao = MemberDAO.getInstance(); // 싱글톤 패턴
+	AccountService accService = AccountServiceImpl.getInstance();
+	MemberBean session;
 	MemberBean s;
 	private static MemberServiceImpl instance = new MemberServiceImpl();
 	public static MemberServiceImpl getInstance() {
@@ -33,10 +39,26 @@ public class MemberServiceImpl implements MemberService{
 	public MemberBean findById(String id) {
 		return dao.findById(id);
 	}
-	public List<MemberBean> list() {
+	public List<?> list() {
 		return dao.list();
 	}
-	public List<MemberBean> findByName(String name) {
+	public List<?> findBy(String name) {
 		return dao.findByName(name);
+	}
+	@Override
+	public Map<?, ?> map() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	public String login(MemberBean member) {
+		String result = "ID가 존재하지 않습니다.";
+		if (dao.login(member)) {
+			result = "로그인성공";
+			session = findById(member.getId());
+			accService.map();
+		} else {
+			result = "로그인 실패";
+		}
+		return result;
 	}
 }

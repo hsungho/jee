@@ -5,19 +5,19 @@ package member;
 
 import java.util.List;
 
+import global.CommonService;
+
 /**
  * @date   :2016. 6. 17.
  * @author :ckan
  * @file   :StudentService.java
  * @story  :
  */
-public interface MemberService {
+public interface MemberService extends CommonService{
 	public String open(MemberBean stu);
 	public String show();
 	public String update(MemberBean stu);
 	public String delete(String id);
-	public int count();
-	public List<MemberBean> list();
-	public List<MemberBean> findByName(String name);
 	public MemberBean findById(String id);
+	public String login(MemberBean member);
 }

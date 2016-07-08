@@ -82,7 +82,7 @@ public class GradeDAO {
 		return result;
 	}
 	// list
-	public List<GradeBean> list() {
+	public List<?> list() {
 		String sql = "select * from grade_view order by name,id,exam_date";
 		List<GradeBean> tempList = new ArrayList<GradeBean>();
 		try {
@@ -133,7 +133,7 @@ public class GradeDAO {
 		return tempBean;
 	}
 	// findByName
-	public List<GradeBean> findById(String id) {
+	public List<?> findById(String id) {
 		String sql = "select * from grade where id = ? order by name,id,exam_date";
 		List<GradeBean> tempList = new ArrayList<GradeBean>();
 		try {
