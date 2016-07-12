@@ -15,8 +15,9 @@ import global.Constants;
  * @story  :
  */
 public class MemberBean {
-	private String name,id,pw,ssn,regDate,gender;
+	private String name,id,pw,ssn,regDate,gender,profileImg;
 	private int birth,year,curyear;
+	
 	public MemberBean() {
 		// default constructor 기본 생성자
 		// 생성자 오버로딩 
@@ -51,6 +52,13 @@ public class MemberBean {
 			break;
 		}
 		this.birth = this.curyear - this.year + 1;
+   
+	}
+	public String getProfileImg() {
+		return profileImg;
+	}
+	public void setProfileImg(String profileImg) {
+		this.profileImg = profileImg;
 	}
 	public void setPw(String pw){
 		this.pw = pw;

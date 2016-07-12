@@ -21,3 +21,4 @@ public interface MemberService extends CommonService{
 	public MemberBean findById(String id);
 	public String login(MemberBean member);
 }
+//show , findById , login ,list ,findby, countByGender , count
