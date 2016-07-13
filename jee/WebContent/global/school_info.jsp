@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,10 +11,8 @@
 <body>
  <div class="box">
   <iframe width="560" height="315" src="https://www.youtube.com/embed/l7UEAgHPL0Y?autoplay=1"></iframe>
-  
+  <br />
+<a href="../index.jsp">메인 홈으로</a>
 </div>
-<a href="../memberController.html">회원관리 홈으로</a>
-	    <a href="../../index.html">메인 홈으로</a>
-
 </body>
 </html>
