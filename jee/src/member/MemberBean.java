@@ -3,112 +3,101 @@
  */
 package member;
 
+import java.sql.Date;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 
-import global.Constants;
 /**
- * @date   :2016. 6. 17.
- * @author :ckan
- * @file   :Studente1.java
+ * @date   :2016. 6. 16. 
+ * @author :pakjkwan@gmail.com
+ * @file   :Student.java
  * @story  :
- */
+*/
 public class MemberBean {
-	private String name,id,pw,ssn,regDate,gender,profileImg;
-	private int birth,year,curyear;
+	private String id,pw,name,regDate,gender,ssn,profileImg; 
+	private int birth;
 	
-	public MemberBean() {
-		// default constructor 기본 생성자
-		// 생성자 오버로딩 
-	}
-	public MemberBean(String name,String id,String pw,String ssn) {
-		this.name = name;
+	public MemberBean() {}
+	
+	public MemberBean(String id,String pw,String name,String ssn) {
 		this.id = id;
 		this.pw = pw;
-		this.ssn = ssn; 
-		
-		this.curyear = Integer.parseInt(new SimpleDateFormat("yyyy").format(new Date(System.currentTimeMillis())));
-		String[] gendergubun = ssn.split("-");
-		this.year = Integer.parseInt(gendergubun[0].substring(0,2));
-		switch (Integer.parseInt(gendergubun[1])) {
-		case 1:case 5:
-			this.gender = "남";
-			this.year += 1900;
+		this.name = name;
+		this.ssn = ssn;
+		String now = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()));
+		this.regDate = now;
+		String[] ssnArr = ssn.split("-");
+		String[] nowArr = now.split("-");
+		int ageResult1 = (Integer.parseInt(ssnArr[0]));
+		int genderResult = (Integer.parseInt(ssnArr[1]));
+		int ageResult2 = (Integer.parseInt(nowArr[0]));
+		int ageResult0 = 0;
+		switch (genderResult%2) {
+		case 1: case 5: 
+			this.gender="남"; 
+			ageResult0 = ageResult2 - 1900-(ageResult1/10000);
+			this.birth = ageResult0;
 			break;
-		case 3:case 7:
-			this.gender = "남";
-			this.year += 2000;
-			break;		
-		case 2:case 6:
-			this.gender = "여";
-			this.year += 1900;
+		case 3: case 7:
+			this.gender="남"; 
+			ageResult0 = ageResult2 - 2000-(ageResult1/10000);
+			this.birth = ageResult0;
 			break;
-		case 4:case 8:
-			this.gender = "여";
-			this.year += 2000;
+		case 2: case 6:
+			this.gender="여";
+			ageResult0 = ageResult2 - 1900-(ageResult1/10000);
+			this.birth = ageResult0;
+			break;
+		case 4: case 8:
+			this.gender="여";
+			ageResult0 = ageResult2 - 2000-(ageResult1/10000);
+			this.birth = ageResult0;
 			break;
 		default:
-			break;
+			System.out.println("잘못된값이 입력됨");
 		}
-		this.birth = this.curyear - this.year + 1;
-   
 	}
+	
 	public String getProfileImg() {
 		return profileImg;
 	}
+
 	public void setProfileImg(String profileImg) {
 		this.profileImg = profileImg;
 	}
-	public void setPw(String pw){
+
+	public String getId() {
+		return id;
+	}
+	public void setId(String id) {
+		this.id = id;
+	}
+	public String getPw() {
+		return pw;
+	}
+	public void setPw(String pw) {
 		this.pw = pw;
 	}
-	public String getName(){
-		return this.name;
-	}
-	public String getId(){
-		return this.id;
-	}
-	public String getRegDate(){
-		return this.regDate;
-	}
-	public String getGender(){
-		return this.gender;
-	}
-	public int getBirth(){
-		return this.birth;
-	}
-	public void setBirth() {
-		this.curyear = Integer.parseInt(new SimpleDateFormat("yyyy").format(new Date(System.currentTimeMillis())));
-		String[] gendergubun = ssn.split("-");
-		this.year = Integer.parseInt(gendergubun[0].substring(0,2));
-		switch (Integer.parseInt(gendergubun[1])) {
-		case 1:case 5:
-			this.gender = "남";
-			this.year += 1900;
-			break;
-		case 3:case 7:
-			this.gender = "남";
-			this.year += 2000;
-			break;		
-		case 2:case 6:
-			this.gender = "여";
-			this.year += 1900;
-			break;
-		case 4:case 8:
-			this.gender = "여";
-			this.year += 2000;
-			break;
-		default:
-			break;
-		}
-		this.birth = this.curyear - this.year + 1;
+	public String getName() {
+		return name;
 	}
 	public void setName(String name) {
 		this.name = name;
 	}
-	public void setId(String id) {
-		this.id = id;
+	public String getRegDate() {
+		return regDate;
+	}
+	public void setRegDate() {
+		String now = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()));
+		this.regDate = now;
+	}
+	public void setRegDate(String regDate) {
+		this.regDate = regDate;
+	}
+	public String getGender() {
+		return gender;
+	}
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 	public String getSsn() {
 		return ssn;
@@ -116,19 +105,23 @@ public class MemberBean {
 	public void setSsn(String ssn) {
 		this.ssn = ssn;
 	}
-	public String getPw() {
-		return pw;
+	
+	public int getBirth() {
+		return birth;
 	}
-	public void setRegDate(String regDate){
-		this.regDate = regDate;
+
+	public void setBirth(int birth) {
+		this.birth = birth;
 	}
-	public void setRegDate() {
-		this.regDate = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date(System.currentTimeMillis()));
-	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#toString()
+	 */
+	@Override
 	public String toString() {
-		return Constants.SCHOOL_NAME+" [ 성명=" + name + ", 아이디=" + id + ", 비번=****" + ", 주민번호=" + ssn + ", 등록일=" + regDate
-				+ ", 성별=" + gender + ", 나이=" + birth + "]";
+		return "학생 [아이디=" + id + ", 비번=****"  + ", 이름=" + name + ", 등록일=" + regDate + ", 성별=" + gender
+				+ ", 주민번호=" + ssn + ", 나이=" + birth + "]";
 	}
 	
-	
+
 }

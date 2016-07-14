@@ -6,59 +6,105 @@ import java.util.Map;
 import account.AccountService;
 import account.AccountServiceImpl;
 
+
 public class MemberServiceImpl implements MemberService{
-	MemberDAO dao = MemberDAO.getInstance(); // 싱글톤 패턴
+	
+	MemberDAO dao = MemberDAO.getInstance();
 	AccountService accService = AccountServiceImpl.getInstance();
 	MemberBean session;
-	MemberBean s;
 	private static MemberServiceImpl instance = new MemberServiceImpl();
+	
 	public static MemberServiceImpl getInstance() {
 		return instance;
 	}
+
+	
 	private MemberServiceImpl() {
+		// TODO Auto-generated constructor stub
 	}
+	
 	@Override
-	public String open(MemberBean stu) {
-		return (dao.insert(stu) == 1)?"회원가입 축하합니다.":"회원가입 실패";
+	public String regist(MemberBean mem) {
+		String msg = "";
+		
+		int result = dao.insert(mem);
+		if (result==1) {
+			msg = "회원가입 축하합니다";
+		} else {
+			msg = "회원가입 실패";
+		}
+		return msg;
 	}
+
+
 	@Override
-	public String show() {
-		return "";
+	public String update(MemberBean mem) {
+		String result = ""; 
+		if (dao.update(mem) == 1) {
+			result = "수정성공";
+		} else {
+			result = "수정실패";
+		}
+		return result;
 	}
-	@Override
-	public String update(MemberBean stu) {
-		return (dao.update(stu) == 1)?"PW 변경 되었습니다.":"PW 변경 실패했습니다.";
-	}
+
 	@Override
 	public String delete(String id) {
-		return (dao.delete(id) == 1)?"삭제 성공 입니다.":"삭제 실패입니다.";
+		String result = ""; 
+		if (dao.delete(id) == 1) {
+			result = "삭제성공";
+		} else {
+			result = "삭제실패";
+		}
+		return result;
 	}
+
+
+	@Override
 	public int count() {
+		// TODO Auto-generated method stub
 		return dao.count();
 	}
-	public MemberBean findById(String id) {
-		return dao.findById(id);
+
+
+	@Override
+	public MemberBean findById(String findID) {
+		return dao.findById(findID);
 	}
+
+
+	@Override
 	public List<?> list() {
+		
 		return dao.list();
 	}
-	public List<?> findBy(String name) {
-		return dao.findByName(name);
+
+
+	@Override
+	public List<?> findBy(String keyword) {
+		// TODO Auto-generated method stub
+		return null;
 	}
+
+
 	@Override
 	public Map<?, ?> map() {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	@Override
 	public String login(MemberBean member) {
-		String result = "ID가 존재하지 않습니다.";
-		if (dao.login(member)) {
-			result = "로그인성공";
-			session = findById(member.getId());
-			accService.map();
-		} else {
-			result = "로그인 실패";
-		}
+		// 2.로그인
+		String result = "";
+			if (dao.login(member)) {
+				session = dao.findById(member.getId());
+				result = session.getName();
+				System.out.println("서비스에서 이름 디버깅"+result);
+//				accService.map();
+			}else{
+				result = "";
+			}
+		
 		return result;
 	}
 }

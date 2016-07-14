@@ -17,5 +17,5 @@ public class Constants {
 	public final static String MYSQL_DRIVER = "oracle.jdbc.driver.OracleDriver";
 	public final static String MYSQL_URL = "jdbc:oracle:thin:@localhost:1521:XE";
 	public final static String USER_ID = "hanbit";
-	public final static String USER_PW = "hanbit";
+	public final static String USER_PW = "gksqlc";
 }

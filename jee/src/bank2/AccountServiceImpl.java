@@ -55,5 +55,14 @@ public class AccountServiceImpl implements AccountService {
 	public void deleteAccount() {
 		account = null;
 	}
+	public static AccountService getInstance() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public void map() {
+		// TODO Auto-generated method stub
+		
+	}
 
 }

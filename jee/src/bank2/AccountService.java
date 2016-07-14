@@ -26,4 +26,5 @@ public interface AccountService {
 		public String showAccount();
 		// 6해지
 		public void deleteAccount();
+		public abstract void map();
 }
