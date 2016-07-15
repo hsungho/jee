@@ -107,4 +107,11 @@ public class MemberServiceImpl implements MemberService{
 		
 		return result;
 	}
+
+
+	@Override
+	public MemberBean show() {
+		// TODO Auto-generated method stub
+		return session;
+	}
 }

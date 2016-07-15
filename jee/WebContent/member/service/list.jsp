@@ -69,7 +69,7 @@ tr:nth-child(even) {
 		<img src="<%=ctx%>/img/home.png" alt="home" style="width: 30px"/>
 	</a>
 	<a href="<%=ctx %>/member/member_controller.jsp">
-		<img src="<%=ctx%>/img/member.jpg" alt="member" style="width: 30px"/>
+		<img src="<%=ctx%>/img/Previous.png" alt="member" style="width: 30px"/>
 	</a>
 </div>
 </body>

@@ -3,14 +3,13 @@
       <%@ page import="member.MemberService" %>
     <%@ page import="member.MemberServiceImpl" %>
     <%@ page import="member.MemberBean" %>
-        <%String ctx = application.getContextPath(); %>
-<!DOCTYPE html>
+            <%String ctx = application.getContextPath();%>
+        <!DOCTYPE html>
 <html lang= "en">
 <head>
 <meta charset="UTF-8">
 <title>회원가입2</title>
 <link rel="stylesheet" href="../../css/member.css" />
-
 <style type="text/css">
 span.meta{width: 200px;background-color:yellow;float: left}
 div.joinDiv{border:1px dotted gray;width: 80%;margin:10px 50px 10px 50px}	
@@ -32,42 +31,23 @@ if(name.equals("")||id.equals("")||pw.equals("")||ssn.equals("")){
         <a href="<%=ctx%>/member/service/regist.jsp"></a>
 <%
 }else{
-	  
-%>	
-member.setId(id);
+	member.setId(id);
 	  member.setPw(pw);
 	  member.setName(name);
-	  membrt.setSsn(ssn);
-     String name = service.login(member);
-		회원가입을 축하드립니다. <%=request.getParameter("name") %> 님
-      <% }
-
-%>        
-        
-		<form action="" method = "get">
-	  <span class = "meta">이름</span>   <%=request.getParameter("name") %><br />
-	   <span class = "meta">ID</span>   <%=request.getParameter("id") %><br />
-	   <span class = "meta">비밀번호</span> <%=request.getParameter("pw") %><br />
-	  <span class = "meta">SSN</span>  <%=request.getParameter("ssn") %><br />
-	 
-		<%
-		String[] subjects = request.getParameterValues("subjects");
-		if(subjects != null){
-			for(int i=0;i<subjects.length;i++){
-				%><%=subjects[i] %><br/><%
-			}
-		}
-		
-		%>
-	
-	</form>
-	<a href="../../index.jsp">
-			<img src="    <%=ctx %>/img/home.png" alt="home" style="width: 30px"/>
+	  member.setSsn(ssn);
+	  member.setRegDate(); 
+	  String msg = service.regist(member); 
+}                     %>
+	    		회원가입을 축하드립니다. <%=request.getParameter("name") %> 님
+   				
+   					<a href="<%=ctx %>index.jsp">
+			
+			
+			<img src="<%=ctx %>/img/home.png" alt="home" style="width: 30px"/>
 		</a>
 		<a href="../member_controller.jsp">
-			<img src="<%=ctx %>/Previous.png" alt="member" style="width: 30px"/>
+			<img src="<%=ctx %>/img/Previous.png" alt="member" style="width: 30px"/>
 		</a>
-		
-	</div>
+			</div>
 </body>
 </html>

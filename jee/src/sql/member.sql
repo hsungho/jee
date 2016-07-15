@@ -4,7 +4,7 @@ select * from member; -- list
 select * from member where id = 'lee'; -- find By PK
 select * from member where name = '이순신'; -- find By Not PK
 select count(*) from member; -- count
-delete test;
+delete member;
 
 create table member(
 	name varchar2(20),

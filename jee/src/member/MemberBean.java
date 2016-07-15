@@ -13,9 +13,25 @@ import java.text.SimpleDateFormat;
  * @story  :
 */
 public class MemberBean {
-	private String id,pw,name,regDate,gender,ssn,profileImg; 
+	private String id,pw,pw1,pw2,name,regDate,gender,ssn,profileImg; 
 	private int birth;
 	
+	public String getPw1() {
+		return pw1;
+	}
+
+	public void setPw1(String pw1) {
+		this.pw1 = pw1;
+	}
+
+	public String getPw2() {
+		return pw2;
+	}
+
+	public void setPw2(String pw2) {
+		this.pw2 = pw2;
+	}
+
 	public MemberBean() {}
 	
 	public MemberBean(String id,String pw,String name,String ssn) {
@@ -23,6 +39,7 @@ public class MemberBean {
 		this.pw = pw;
 		this.name = name;
 		this.ssn = ssn;
+
 		String now = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()));
 		this.regDate = now;
 		String[] ssnArr = ssn.split("-");
@@ -31,7 +48,8 @@ public class MemberBean {
 		int genderResult = (Integer.parseInt(ssnArr[1]));
 		int ageResult2 = (Integer.parseInt(nowArr[0]));
 		int ageResult0 = 0;
-		switch (genderResult%2) {
+	
+		switch (genderResult) {
 		case 1: case 5: 
 			this.gender="남"; 
 			ageResult0 = ageResult2 - 1900-(ageResult1/10000);
@@ -54,6 +72,7 @@ public class MemberBean {
 			break;
 		default:
 			System.out.println("잘못된값이 입력됨");
+			break;
 		}
 	}
 	
@@ -111,7 +130,38 @@ public class MemberBean {
 	}
 
 	public void setBirth(int birth) {
-		this.birth = birth;
+		String now = new SimpleDateFormat("yyyy-MM-dd").format(new Date(System.currentTimeMillis()));
+		this.regDate = now;
+		String[] ssnArr = ssn.split("-");
+		String[] nowArr = now.split("-");
+		int ageResult1 = (Integer.parseInt(ssnArr[0]));
+		int genderResult = (Integer.parseInt(ssnArr[1]));
+		int ageResult2 = (Integer.parseInt(nowArr[0]));
+		int ageResult0 = 0;
+		switch (genderResult%2) {
+		case 1: case 5: 
+			this.gender="남"; 
+			ageResult0 = ageResult2 - 1900-(ageResult1/10000);
+			this.birth = ageResult0;
+			break;
+		case 3: case 7:
+			this.gender="남"; 
+			ageResult0 = ageResult2 - 2000-(ageResult1/10000);
+			this.birth = ageResult0;
+			break;
+		case 2: case 6:
+			this.gender="여";
+			ageResult0 = ageResult2 - 1900-(ageResult1/10000);
+			this.birth = ageResult0;
+			break;
+		case 4: case 8:
+			this.gender="여";
+			ageResult0 = ageResult2 - 2000-(ageResult1/10000);
+			this.birth = ageResult0;
+			break;
+		default:
+			System.out.println("잘못된값이 입력됨");
+		}
 	}
 
 	/* (non-Javadoc)

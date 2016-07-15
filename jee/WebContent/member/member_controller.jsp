@@ -19,7 +19,7 @@ div.memberClass{font-size: 20px;}
 			<ol>
 				<li><a href="service/regist.jsp">회원가입</a></li>
 				<li><a href="service/login.jsp">로그인</a></li>
-				<li><a href="service/findById.jsp">내정보보기</a></li>
+				<li><a href="result/detail_result.jsp">내정보보기</a></li>
 				<li><a href="service/update.jsp">내정보수정(비번)</a></li>
 				<li><a href="service/delete.jsp">탈퇴</a></li>
 				<li><a href="service/list.jsp">회원검색</a></li>
