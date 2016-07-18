@@ -16,8 +16,9 @@ import global.CommonService;
 public interface MemberService extends CommonService{
 	public String regist(MemberBean mem);
 	public MemberBean findById(String findID);
-	public String update(MemberBean stu2);
-	public String delete(String string);
+	public void update(MemberBean stu2);
+	public String delete(MemberBean member);
+	public void logout(MemberBean member);
 	public String login(MemberBean member);
 	public MemberBean show();
 	

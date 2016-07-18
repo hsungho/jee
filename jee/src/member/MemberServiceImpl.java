@@ -38,23 +38,21 @@ public class MemberServiceImpl implements MemberService{
 
 
 	@Override
-	public String update(MemberBean mem) {
-		String result = ""; 
-		mem.setId(session.getId());
-		
-		if (dao.update(mem) == 1) {
-			result = "수정성공";
-			
-		} else {
-			result = "수정실패";
+	public void update(MemberBean mem) {
+         int result = dao.update(mem);
+	     if (result == 1) {
+			session = this.findById(mem.getId());
 		}
-		return result;
+		
 	}
 
 	@Override
-	public String delete(String id) {
+	public String delete(MemberBean member) {
 		String result = ""; 
-		if (dao.delete(id) == 1) {
+		System.out.println("id : "+member.getId());
+		System.out.println("pw : "+member.getPw());		
+		System.out.println("dao delet : "+dao.delete(member));		
+		if (dao.delete(member) != 0) {
 			result = "삭제성공";
 		} else {
 			result = "삭제실패";
@@ -102,7 +100,7 @@ public class MemberServiceImpl implements MemberService{
 			if (dao.login(member)) {
 				session = dao.findById(member.getId());
 				result = session.getName();
-				System.out.println("서비스에서 이름 디버깅"+result);
+			
 //				accService.map();
 			}else{
 				result = "";
@@ -114,7 +112,17 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public MemberBean show() {
-		// TODO Auto-generated method stub
+		
 		return session;
+	}
+
+
+	@Override
+	public void logout(MemberBean member) {
+		if(member.getId().equals(session.getId())
+				&& member.getPw().equals(session.getPw())){
+			session=null;
+		
+	}
 	}
 }

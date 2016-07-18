@@ -61,10 +61,10 @@ String ctx = application.getContextPath();
 			<td colspan="2"><%=member.getRegDate()%></td>
 		</tr>
 	</table>
-		<a href="<%=ctx %>/member/member_controller.jsp">
+		<a href="<%=ctx %>/index.jsp">
 			<img src="<%=ctx %>/img/home.png" alt="회원관리 홈 으로" width="30" height="30">
 		</a>
-		<a href="<%=ctx %>/index.jsp">
+		<a href="<%=ctx %>/member/member_controller.jsp">
 			<img src="<%=ctx %>/img/Previous.png" alt="메인 홈 으로" width="30" height="30">
 		</a>
 	</div>
