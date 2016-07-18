@@ -13,7 +13,17 @@ import java.text.SimpleDateFormat;
  * @story  :
 */
 public class MemberBean {
-	private String id,pw,pw1,pw2,name,regDate,gender,ssn,profileImg; 
+	private String id,pw,pw1,pw2,name,regDate,gender,ssn,profileImg,email; 
+	
+	
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	private int birth;
 	
 	public String getPw1() {
@@ -169,7 +179,7 @@ public class MemberBean {
 	 */
 	@Override
 	public String toString() {
-		return "학생 [아이디=" + id + ", 비번=****"  + ", 이름=" + name + ", 등록일=" + regDate + ", 성별=" + gender
+		return "학생 [아이디=" + id + ", 비번=****"  +"+이메일="+email+ ", 이름=" + name + ", 등록일=" + regDate + ", 성별=" + gender
 				+ ", 주민번호=" + ssn + ", 나이=" + birth + "]";
 	}
 	

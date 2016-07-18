@@ -40,8 +40,11 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public String update(MemberBean mem) {
 		String result = ""; 
+		mem.setId(session.getId());
+		
 		if (dao.update(mem) == 1) {
 			result = "수정성공";
+			
 		} else {
 			result = "수정실패";
 		}

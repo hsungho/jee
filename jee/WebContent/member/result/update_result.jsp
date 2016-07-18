@@ -30,27 +30,34 @@ String ctx = application.getContextPath();
 <%		response.sendRedirect(ctx+"/member/service/login.jsp");		
 	} 
 %>
-		<h1>내정보보기</h1>
+		<h1>내정보수정</h1>
 		<table id="member_detail">
 		<tr>
-			<td rowspan="4" style="width:60%">
-				<img src="<%=ctx %>/img/<%=member.getId() %>.jpg" alt="W3Schools.com" width="400" height="400">
+			<td rowspan="3" style="width:60%">
+				<img src="<%=ctx %>/img/<%=member.getId()%>.jpg" alt="W3Schools.com" width="400" height="350">
 			</td>
 			<td class="font_bold bg_color" style="width:20%">ID</td>
 			<td style="width:40%"><%=member.getId()%></td>
 		</tr>
-		
+		<tr>
+			<td class="font_bold bg_color">비밀번호</td>
+			<td>
+			<input type="text" name="pw" value="<%=member.getPw()%>" />
+			</td>
+		</tr>
 		<tr>
 			<td class="font_bold bg_color">이 름</td>
 			<td><%=member.getName()%></td>
 		</tr>
 		<tr>
 			<td class="font_bold bg_color">성 별</td>
-			<td><%=member.getGender()%></td>
+			<td colspan="2"><%=member.getGender()%></td>
 		</tr>
 		<tr>
-			<td class="font_bold bg_color">e-mail</td>
-			<td colspan="2"><%=member.getEmail()%></td>
+			<td class="font_bold bg_color">email</td>
+			<td colspan="2">
+			<input type="text" name="email" value="<%=member.getEmail()%>" />
+			</td>
 		</tr>
 		<tr>
 			<td class="font_bold bg_color">생년월일</td>

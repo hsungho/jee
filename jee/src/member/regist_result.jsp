@@ -20,11 +20,12 @@ div.joinDiv{border:1px dotted gray;width: 80%;margin:10px 50px 10px 50px}
 <%
 MemberService service = MemberServiceImpl.getInstance();
 MemberBean member = new MemberBean();
-String name="",id="",pw="",ssn="";
+String name="",id="",pw="",ssn="",email="";
 name=request.getParameter("name");
 id = request.getParameter("id");
 pw = request.getParameter("pw");
 ssn = request.getParameter("ssn");
+email = request.getParameter("email");
 if(name.equals("")||id.equals("")||pw.equals("")||ssn.equals("")){
 %>
         <h2>가입실패!!</h2>
@@ -36,6 +37,7 @@ if(name.equals("")||id.equals("")||pw.equals("")||ssn.equals("")){
 	  member.setName(name);
 	  member.setSsn(ssn);
 	  member.setRegDate(); 
+	  member.setEmail(email);
 	  String msg = service.regist(member); 
 }                     %>
 	    		회원가입을 축하드립니다. <%=request.getParameter("name") %> 님

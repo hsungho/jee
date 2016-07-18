@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>회원가입2</title>
+<title>회원정보수정</title>
 <link rel="stylesheet" href="<%=ctx%>/css/member.css" />
 
 <style type="text/css">
@@ -17,11 +17,8 @@ div.joinDiv{border:1px dotted gray;width: 80%;margin:10px 50px 10px 50px}
 	<div class="box">
 		<h1>회원정보 변경 (비번)</h1> 
 		<form action="<%=ctx %>/member/result/update_result.jsp" method = "post">
-	  	  
-	  	  <p><span class = "meta"> 현재비번</span> <input type="password" name ="pw"/><br /></p>
-	  	  
-	      <p><span class = "meta"> 새로운비번</span><input type="password" name ="pw1"/><br /></p>
-	      <p><span class = "meta"> 비번확인 </span><input type="password" name ="pw2"/><br /></p>
+	 <p><span class = "meta"> 새로운비번</span><input type="password" name ="pw1"/><br /></p>
+	    
 		  <br /><br />
 	
 	

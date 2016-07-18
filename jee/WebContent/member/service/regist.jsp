@@ -20,6 +20,7 @@ div.joinDiv{border:1px dotted gray;width: 80%;margin:10px 50px 10px 50px}
 	  <span class = "meta">ID</span> <input type="text" name ="id"/><br />
 	  <span class = "meta">비밀번호</span><input type="text" name ="pw"/><br />
 	  <span class = "meta">SSN</span><input type="text" name ="ssn"/><br />
+	  <span class = "meta">email</span><input type="text" name ="email"/><br />
 	  
 		
 		<input type="submit" value="회원가입" />

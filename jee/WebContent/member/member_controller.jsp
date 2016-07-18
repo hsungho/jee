@@ -19,13 +19,13 @@ div.memberClass{font-size: 20px;}
 			<ol>
 				<li><a href="service/regist.jsp">회원가입</a></li>
 				<li><a href="service/login.jsp">로그인</a></li>
+				<li><a href="service/logout.jsp">로그아웃</a></li>
 				<li><a href="result/detail_result.jsp">내정보보기</a></li>
-				<li><a href="service/update.jsp">내정보수정(비번)</a></li>
+				<li><a href="result/update_result.jsp">내정보수정(비번)</a></li>
 				<li><a href="service/delete.jsp">탈퇴</a></li>
 				<li><a href="service/list.jsp">회원검색</a></li>
-				<li><a href="service/findBy.jsp">검색(이름)</a></li>
-				<li><a href="service/countByGender.jsp">검색(성별)</a></li>
-				<li><a href="service/count.jsp">회원수</a></li>
+				<li><a href="service/findBy.jsp">검색</a></li>
+			    <li><a href="service/count.jsp">회원수</a></li>
 			</ol>	
 			</div>	
     <a href="<%=ctx %>/index.jsp">

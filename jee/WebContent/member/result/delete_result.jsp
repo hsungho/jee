@@ -14,10 +14,10 @@
 	<embed src="<%=ctx%>/img/starwars.gif">
 		<h1>탈퇴</h1> 
 	<a href="<%=ctx%>/index.jsp">
-		<img src="<%=ctx %>/home.png" alt="home" style="width: 30px"/>
+		<img src="<%=ctx %>/img/home.png" alt="home" style="width: 30px"/>
 	</a>
 	<a href="<%=ctx%>/member/member_controller.jsp">
-		<img src="<%=ctx %>/img/member.jpg" alt="member" style="width: 30px"/>
+		<img src="<%=ctx %>/img/Previous.png" alt="member" style="width: 30px"/>
 	</a>
 	</div>
 	
